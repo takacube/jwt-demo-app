@@ -1,0 +1,36 @@
+version: '3'
+services:
+    backend:
+        build: backend/.
+        ports:
+            - "8001:81"
+        volumes:
+            - .:/code
+        networks:
+          - app-net
+    frontend:
+        build: frontend/.
+        environment:
+          - NODE_ENV=development
+        volumes:
+          - ./:/usr/src/app
+        command: sh -c 'cd frontend/jwt-demo && yarn start'
+        networks:
+          - app-net
+        ports:
+          - '3000:3000'
+        tty: true
+    db:
+      image: mongo
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: mongo
+      ports:
+        - 27017:27017
+      volumes:
+        - ./db:/data/db
+        - ./configdb:/data/configdb
+networks:
+  app-net:
+    driver: bridge
