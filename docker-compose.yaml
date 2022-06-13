@@ -6,6 +6,7 @@ services:
             - "8001:81"
         volumes:
             - .:/code
+        tty: true
         networks:
           - app-net
     frontend:
