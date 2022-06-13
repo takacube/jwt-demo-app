@@ -12,9 +12,10 @@ def index():
 
 @app.route("/subscription", methods=["POST"])
 def subscribe():
-    req = request.json
-    print(req)
-    print("test")
-    return json.dumps({"title": "subscription"})
+    name = request["name"]
+    password = request["password"]
+    print(name)
+    print(password)
+    return json.dumps({"name": name, "password": password})
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=81, debug=True)
