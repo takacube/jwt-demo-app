@@ -1,5 +1,5 @@
 ### MongoDBへの接続
 
-```bas．
+```bash
 mongo admin -u root -p
 ```
