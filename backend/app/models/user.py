@@ -31,19 +31,29 @@ class User:
     def password(self, password):
         self.__password = password
 
-    # ドキュメントから変換
+
+    # ドキュメントからオブジェクトへ変換
     @classmethod
     def from_doc(cls, doc):
         if doc is None:
             return None
         user = User(doc['id'],
-                    doc['username'],
+                    doc['name'],
                     doc['password'])
         return user
 
     # ドキュメントへ変換
     def to_doc(self):
         doc = { 'id': str(self.id),
-                'username': str(self.username),
+                'name': str(self.username),
                 'password' : str(self.password) }
         return doc
+
+
+"""
+user = User("1", "Taka", "vadsa").to_doc()
+print(f"{user}")
+
+docname = User.from_doc({'id': '1', 'username': 'Taka', 'password': 'vadsa'})
+print(docname)
+"""

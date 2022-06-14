@@ -6,6 +6,6 @@ COPY ./app /app
 
 RUN pip install Flask
 RUN pip install -U flask-cors
-RUN pip install flask-jwt-extended
+RUN pip install pymongo
 
 CMD ["python", "index.py"]
